@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This network was created in GeNIe Academic, which can be used for academic teaching and research purposes only -->
+<smile version="1.0" id="Network1" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="Age">
+			<state id="age_0_to_17" />
+			<state id="age_18_to_65" />
+			<state id="age_66_above" />
+			<probabilities>0.098423 0.815759 0.08581800000000001</probabilities>
+		</cpt>
+		<cpt id="Region">
+			<state id="NCR" />
+			<state id="Region4A" />
+			<state id="Region3" />
+			<state id="Region7" />
+			<state id="Region6" />
+			<state id="Region2" />
+			<state id="Region11" />
+			<state id="Region1" />
+			<state id="Region10" />
+			<state id="CAR" />
+			<state id="Region12" />
+			<state id="Region8" />
+			<state id="CARAGA" />
+			<state id="Region9" />
+			<state id="Region5" />
+			<state id="Region4B" />
+			<state id="BARMM" />
+			<probabilities>0.314421 0.182967 0.10188 0.056662 0.054174 0.044023 0.03809 0.036052 0.031622 0.029549 0.021428 0.0198 0.017875 0.016653 0.016608 0.011486 0.006709</probabilities>
+		</cpt>
+		<cpt id="Sex">
+			<state id="Male" />
+			<state id="Female" />
+			<probabilities>0.500698 0.499302</probabilities>
+		</cpt>
+		<cpt id="riskFactor">
+			<state id="High" />
+			<state id="Low" />
+			<parents>Age Region Sex</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.13511855 0.8648814516 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Frontliner">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="CloseContact">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="TravelledOutside">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<noisyadder id="InfectionPossibility">
+			<state id="High" />
+			<state id="Low" />
+			<parents>Frontliner CloseContact TravelledOutside</parents>
+			<dstates>1 1 1 1</dstates>
+			<weights>5 8 3 1</weights>
+			<parameters>0.5 0.5 0 1 0.5 0.5 0 1 0.5 0.5 0 1 0 1</parameters>
+		</noisyadder>
+		<noisyadder id="Covid">
+			<state id="Present" />
+			<state id="Absent" />
+			<parents>riskFactor InfectionPossibility</parents>
+			<dstates>1 1 1</dstates>
+			<weights>2 8 1</weights>
+			<parameters>0.5 0.5 0 1 0.5 0.5 0 1 0 1</parameters>
+		</noisyadder>
+		<cpt id="Fever">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.538 0.462 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Cough">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.674 0.326 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Fatigue">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.364 0.636 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Dyspnea">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.249 0.751 0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="Myalgia">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.266 0.734 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="Headache">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.219 0.781 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="SoreThroat">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.212 0.788 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="Diarrhea">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.116 0.884 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="Aguesia_Anosmia">
+			<state id="True" />
+			<state id="False" />
+			<parents>Covid</parents>
+			<probabilities>0.41 0.59 0.1 0.9</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 3.0.6518.0 ACADEMIC" name="Network1">
+			<node id="Covid">
+				<name>Current Covid-19 Status</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>931 562 1045 639</position>
+				<barchart active="true" width="168" height="64" />
+			</node>
+			<node id="riskFactor">
+				<name>Risk Factor</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>664 444 712 474</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="InfectionPossibility">
+				<name>Infection Possibility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1242 426 1290 456</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Age">
+				<name>Age Group</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>389 188 437 218</position>
+				<barchart active="true" width="166" height="82" />
+			</node>
+			<node id="Sex">
+				<name>Sex</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>559 187 607 217</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Region">
+				<name>Region</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>707 206 755 236</position>
+				<barchart active="true" width="128" height="324" />
+			</node>
+			<node id="TravelledOutside">
+				<name>Travelled Outside</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1208 241 1256 271</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="CloseContact">
+				<name>Close Contact</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1358 240 1410 272</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Frontliner">
+				<name>Frontliner</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1509 240 1561 272</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Fever">
+				<name>Fever</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>594 585 646 617</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Cough">
+				<name>Cough</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>657 655 709 687</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Fatigue">
+				<name>Fatigue</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>720 724 772 756</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Dyspnea">
+				<name>Shortness of Breath</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>962 792 1014 824</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Myalgia">
+				<name>Muscle Pain</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1098 792 1150 824</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Headache">
+				<name>Headache</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1186 721 1238 753</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="SoreThroat">
+				<name>Sore Throat</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1253 652 1305 684</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Diarrhea">
+				<name>Diarrhea</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1320 584 1372 616</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Aguesia_Anosmia">
+				<name>Loss of Taste and Smell</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>819 794 867 824</position>
+				<barchart active="true" width="141" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
