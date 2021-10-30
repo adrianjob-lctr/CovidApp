@@ -3,6 +3,7 @@ package com.covidapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class DiagnoseActivity extends AppCompatActivity {
         coughCardView = findViewById(R.id.dia_act_cough_cv);
         fatigueCardView = findViewById(R.id.dia_act_ftg_cv);
         acheCardView = findViewById(R.id.dia_act_ache_cv);
-        runny_noseCardView = findViewById(R.id.dia_act_rn_cv);
+        //runny_noseCardView = findViewById(R.id.dia_act_rn_cv);
         sore_throatCardView = findViewById(R.id.dia_act_st_cv);
         diff_breathCardView = findViewById(R.id.dia_act_db_cv);
         diarrheaCardView = findViewById(R.id.dia_act_diar_cv);
@@ -49,7 +50,7 @@ public class DiagnoseActivity extends AppCompatActivity {
         coughCardView.setOnClickListener(view -> coughCardView.toggle());
         fatigueCardView.setOnClickListener(view -> fatigueCardView.toggle());
         acheCardView.setOnClickListener(view -> acheCardView.toggle());
-        runny_noseCardView.setOnClickListener(view -> runny_noseCardView.toggle());
+        //runny_noseCardView.setOnClickListener(view -> runny_noseCardView.toggle());
         sore_throatCardView.setOnClickListener(view -> sore_throatCardView.toggle());
         diff_breathCardView.setOnClickListener(view -> diff_breathCardView.toggle());
         diarrheaCardView.setOnClickListener(view -> diarrheaCardView.toggle());
@@ -61,7 +62,7 @@ public class DiagnoseActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(view -> {
 
-            ArrayList<String> selectedItems = new ArrayList<String>();
+            ArrayList<String> selectedItems = new ArrayList<>();
 
             if(feverCardView.isChecked()) selectedItems.add("Fever");
             if(coughCardView.isChecked()) selectedItems.add("Cough");
@@ -80,15 +81,9 @@ public class DiagnoseActivity extends AppCompatActivity {
             double res = inferenceEngine.getProbability(selectedItems) * 100;
 
             Intent result = new Intent(this, ResultActivity.class);
-            result.putExtra("result", String.format("%.2f", res));
+            result.putExtra("result", res);
             startActivity(result);
             finish();
         });
-
     }
-
-
-
-
-
 }

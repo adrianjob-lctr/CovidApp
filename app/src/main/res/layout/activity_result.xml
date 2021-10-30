@@ -5,19 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     tools:context=".ResultActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:orientation="vertical">
 
         <!--  Diagnose Title  -->
         <TextView
@@ -27,20 +22,28 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Result"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/res_act_result_cv"
-            android:layout_width="match_parent"
+        <com.ramijemli.percentagechartview.PercentageChartView
+            android:id="@+id/res_act_result_pcv"
+            android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="@color/porsche_50"
-            android:padding="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
-
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            app:pcv_mode="ring"
+            app:pcv_startAngle="90"
+            app:pcv_gradientType="linear"
+            app:pcv_gradientColors="#EEBA66, #F6D5A3, #FBEFDA"
+            app:pcv_gradientDistributions="0, 0.5, 1"
+            app:pcv_backgroundBarColor="#EEEEEE"
+            app:pcv_backgroundBarThickness="7dp"
+            app:pcv_orientation="clockwise"
+            app:pcv_animDuration="1200"
+            app:pcv_animInterpolator="accelerate_decelerate"
+            app:pcv_textColor="@color/black"
+            app:pcv_textSize="45sp"
+            app:pcv_typeface="Roboto-Bold.ttf"/>
 
         <TextView
             android:id="@+id/res_act_stat_title_tv"
@@ -49,18 +52,8 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Based on statistics"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/res_act_stat_desc_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/roboto_light"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
